@@ -1146,6 +1146,134 @@ footer {
   .stat-item { padding: 20px 12px; }
   .stat-num { font-size: 34px; }
 }
+/* ─── HERO MOBILE LAYOUT ─── */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.hero-top {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.hero-bottom {
+  flex-shrink: 0;
+  padding-bottom: 20px;
+}
+
+.hero-title {
+  margin-bottom: 0;
+}
+
+.hero-sub {
+  margin-bottom: 24px;
+  max-width: 100%;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Адаптация для десктопа */
+@media (min-width: 769px) {
+  .hero-content {
+    display: block;
+    height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: center;
+  }
+  .hero-top {
+    flex: none;
+  }
+  .hero-bottom {
+    padding-bottom: 0;
+  }
+  .hero-sub {
+    max-width: 440px;
+    margin-bottom: 48px;
+  }
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 0 20px;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    justify-content: space-between;
+  }
+  
+  .hero-title {
+    font-size: clamp(56px, 14vw, 88px);
+  }
+  
+  .hero-sub {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .hero-actions {
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost {
+    flex: 1;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 10px;
+  }
+  
+  .hero-scroll {
+    display: none;
+  }
+  
+  .hero-bg {
+    background-image: url('images/hero-bg-mobile.webp');
+    background-position: center 30%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding-top: 80px;
+    padding-bottom: 16px;
+  }
+  
+  .hero-sub {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 10px;
+  }
+  
+  .hero-bg {
+    background-image: url('images/hero-bg-mobile.webp');
+    background-position: center 20%;
+  }
+}
 </style>
 </head>
 <body>
@@ -1181,19 +1309,26 @@ footer {
   <div class="hero-gradient"></div>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Москва &bull; Внуково</p>
-    <h1 class="hero-title">
-      <span class="line-silver">Авто</span><br/>
-      <span class="line-blue">Мой</span><br/>
-      <span style="font-size:0.38em; letter-spacing:0.18em; color:rgba(255,255,255,0.35); font-family:var(--font-accent); font-weight:300; text-transform:uppercase;">Детейлинг-мойка</span>
-    </h1>
-    <p class="hero-sub">Мойка и уход за автомобилем, которые видны в деталях. Только профессиональная химия, только результат.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Записаться
-      </a>
-      <a href="#services" class="btn-ghost">Все услуги</a>
+    <!-- Верхняя часть: заголовок -->
+    <div class="hero-top">
+      <p class="hero-eyebrow">Москва &bull; Внуково</p>
+      <h1 class="hero-title">
+        <span class="line-silver">Авто</span><br/>
+        <span class="line-blue">Мой</span><br/>
+        <span style="font-size:0.38em; letter-spacing:0.18em; color:rgba(255,255,255,0.35); font-family:var(--font-accent); font-weight:300; text-transform:uppercase;">Детейлинг-мойка</span>
+      </h1>
+    </div>
+
+    <!-- Нижняя часть: текст и кнопки -->
+    <div class="hero-bottom">
+      <p class="hero-sub">Мойка и уход за автомобилем, которые видны в деталях. Только профессиональная химия, только результат.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Записаться
+        </a>
+        <a href="#services" class="btn-ghost">Все услуги</a>
+      </div>
     </div>
   </div>
 
