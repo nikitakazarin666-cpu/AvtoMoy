@@ -193,12 +193,26 @@ nav a:hover::after { transform: scaleX(1); }
   background: var(--black);
 }
 
-#hero-canvas {
+/* ─── HERO BACKGROUND IMAGE ─── */
+.hero-bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
+  background-image: url('images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Затемнение для лучшей читаемости текста */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 8, 0.5);
+  z-index: 1;
 }
 
 .hero-gradient {
@@ -1004,6 +1018,12 @@ footer {
   .footer-bottom { padding: 20px 20px 0; }
   .header { padding: 0 20px; height: 64px; }
   .mobile-nav { top: 64px; }
+  
+  /* ─── HERO MOBILE BACKGROUND ─── */
+  .hero-bg {
+    background-image: url('images/hero-bg-mobile.jpg');
+    background-position: center 30%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1013,8 +1033,14 @@ footer {
   .btn-primary, .btn-ghost { text-align: center; justify-content: center; }
   .gallery-grid { grid-template-columns: 1fr; }
   .stats-inner { grid-template-columns: 1fr 1fr; }
-  .stat-item { padding: 20px 12px; }
+    .stat-item { padding: 20px 12px; }
   .stat-num { font-size: 34px; }
+  
+  /* ─── HERO MOBILE BACKGROUND ─── */
+  .hero-bg {
+    background-image: url('images/hero-bg-mobile.jpg');
+    background-position: center 20%;
+  }
 }
 </style>
 </head>
@@ -1047,7 +1073,8 @@ footer {
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="home">
-  <canvas id="hero-canvas"></canvas>
+  <!-- Фоновое изображение вместо Canvas -->
+  <div class="hero-bg"></div>
   <div class="hero-gradient"></div>
 
   <div class="hero-content">
@@ -1543,7 +1570,7 @@ footer {
     <p class="section-eyebrow reveal">Процесс</p>
     <h2 class="section-title reveal"><span class="dim">Как мы</span> <span class="blue">Работаем</span></h2>
     <div class="steps reveal">
-      <div class="step">
+            <div class="step">
         <div class="step-num">01</div>
         <div class="step-title">Запись</div>
         <p class="step-text">Позвоните или оставьте заявку на сайте. Выберем удобное время — работаем ежедневно с 11:00 до 22:00.</p>
@@ -1572,44 +1599,43 @@ footer {
   <div class="section" style="padding-bottom: 0;">
     <p class="section-eyebrow reveal">Портфолио</p>
     <h2 class="section-title reveal">Наши <span class="blue">Работы</span></h2>
-    <p class="section-lead reveal">Фотографии реальных автомобилей до и после обработки. Добавьте свои фото в папку images/ проекта.</p>
+    <p class="section-lead reveal">Фотографии реальных автомобилей до и после обработки.</p>
   </div>
   <div class="gallery-grid">
-    <!-- Placeholders – заменить на реальные img src="images/photo1.webp" -->
-    <div class="gallery-item ph">
-      <div class="gallery-ph-label">
-        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        images/photo1.webp
+    <div class="gallery-item">
+      <img src="images/photo1.jpg" alt="Детейлинг-мойка кузова АвтоМой" loading="lazy"/>
+      <div class="gallery-item-overlay">
+        <span class="gallery-caption">Детейлинг-мойка кузова</span>
       </div>
     </div>
-    <div class="gallery-item ph">
-      <div class="gallery-ph-label">
-        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        images/photo2.webp
+    <div class="gallery-item">
+      <img src="images/photo2.jpg" alt="Химчистка салона АвтоМой" loading="lazy"/>
+      <div class="gallery-item-overlay">
+        <span class="gallery-caption">Химчистка салона</span>
       </div>
     </div>
-    <div class="gallery-item ph">
-      <div class="gallery-ph-label">
-        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        images/photo3.webp
+    <div class="gallery-item">
+      <img src="images/photo3.jpg" alt="Полировка кузова АвтоМой" loading="lazy"/>
+      <div class="gallery-item-overlay">
+        <span class="gallery-caption">Полировка кузова</span>
       </div>
     </div>
-    <div class="gallery-item ph">
-      <div class="gallery-ph-label">
-        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        images/photo4.webp
+    <div class="gallery-item">
+      <img src="images/photo4.jpg" alt="Мойка двигателя АвтоМой" loading="lazy"/>
+      <div class="gallery-item-overlay">
+        <span class="gallery-caption">Мойка двигателя</span>
       </div>
     </div>
-    <div class="gallery-item ph">
-      <div class="gallery-ph-label">
-        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        images/photo5.webp
+    <div class="gallery-item">
+      <img src="images/photo5.jpg" alt="Химчистка дисков АвтоМой" loading="lazy"/>
+      <div class="gallery-item-overlay">
+        <span class="gallery-caption">Химчистка дисков</span>
       </div>
     </div>
-    <div class="gallery-item ph">
-      <div class="gallery-ph-label">
-        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-        images/photo6.webp
+    <div class="gallery-item">
+      <img src="images/photo6.jpg" alt="Комплексная мойка АвтоМой" loading="lazy"/>
+      <div class="gallery-item-overlay">
+        <span class="gallery-caption">Комплексная мойка</span>
       </div>
     </div>
   </div>
@@ -1686,45 +1712,47 @@ footer {
       <div class="form-card reveal">
         <div class="form-title">Запись</div>
         <p class="form-sub">Перезвоним в течение часа и подберём время</p>
-        <div class="form-grid">
-          <div class="form-group">
-            <label class="form-label">Имя <span>*</span></label>
-            <input type="text" class="form-input" placeholder="Ваше имя" autocomplete="name"/>
+        <form onsubmit="submitForm(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="user-name" class="form-label">Имя <span>*</span></label>
+              <input type="text" id="user-name" class="form-input" placeholder="Ваше имя" autocomplete="name" required/>
+            </div>
+            <div class="form-group">
+              <label for="user-phone" class="form-label">Телефон <span>*</span></label>
+              <input type="tel" id="user-phone" class="form-input" placeholder="+7 (___) ___-__-__" autocomplete="tel" required/>
+            </div>
+            <div class="form-group">
+              <label for="user-car" class="form-label">Марка автомобиля <span>*</span></label>
+              <input type="text" id="user-car" class="form-input" placeholder="Например: BMW 7" required/>
+            </div>
+            <div class="form-group">
+              <label for="user-service" class="form-label">Услуга <span>*</span></label>
+              <select id="user-service" class="form-select" required>
+                <option value="" disabled selected>Выберите услугу</option>
+                <option>Детейлинг-комплексная мойка</option>
+                <option>Детейлинг-мойка кузова</option>
+                <option>Детейлинг-уборка салона</option>
+                <option>Комплексная химчистка с разбором</option>
+                <option>Химчистка без разбора</option>
+                <option>Деликатная очистка кожи</option>
+                <option>Уход за кузовом</option>
+                <option>Химчистка дисков</option>
+                <option>Мойка двигателя</option>
+                <option>Другое</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label for="user-comment" class="form-label">Комментарий</label>
+              <textarea id="user-comment" class="form-textarea" placeholder="Особые пожелания (необязательно)"></textarea>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Телефон <span>*</span></label>
-            <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" autocomplete="tel"/>
+          <div class="form-check">
+            <input type="checkbox" id="consent" required/>
+            <label for="consent">Нажимая кнопку, вы соглашаетесь с <a href="#">обработкой персональных данных</a></label>
           </div>
-          <div class="form-group">
-            <label class="form-label">Марка автомобиля <span>*</span></label>
-            <input type="text" class="form-input" placeholder="Например: BMW 7"/>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Услуга <span>*</span></label>
-            <select class="form-select">
-              <option value="" disabled selected>Выберите услугу</option>
-              <option>Детейлинг-комплексная мойка</option>
-              <option>Детейлинг-мойка кузова</option>
-              <option>Детейлинг-уборка салона</option>
-              <option>Комплексная химчистка с разбором</option>
-              <option>Химчистка без разбора</option>
-              <option>Деликатная очистка кожи</option>
-              <option>Уход за кузовом</option>
-              <option>Химчистка дисков</option>
-              <option>Мойка двигателя</option>
-              <option>Другое</option>
-            </select>
-          </div>
-          <div class="form-group full">
-            <label class="form-label">Комментарий</label>
-            <textarea class="form-textarea" placeholder="Особые пожелания (необязательно)"></textarea>
-          </div>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" id="consent" required/>
-          <label for="consent">Нажимая кнопку, вы соглашаетесь с <a href="#">обработкой персональных данных</a></label>
-        </div>
-        <button class="form-submit" onclick="submitForm(event)">Отправить заявку →</button>
+          <button type="submit" class="form-submit">Отправить заявку →</button>
+        </form>
       </div>
     </div>
   </div>
@@ -1770,104 +1798,6 @@ footer {
 </footer>
 
 <script>
-// ─── CANVAS PARTICLE ANIMATION (adapted from DAK) ───
-(function() {
-  const canvas = document.getElementById('hero-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [], mouse = { x: -9999, y: -9999 };
-  const PARTICLE_COUNT = 90;
-  const BLUE = '26,111,232';
-
-  function resize() {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-
-  function randomBetween(a, b) { return a + Math.random() * (b - a); }
-
-  function createParticle() {
-    return {
-      x: randomBetween(0, W),
-      y: randomBetween(0, H),
-      vx: randomBetween(-0.25, 0.25),
-      vy: randomBetween(-0.35, -0.05),
-      size: randomBetween(1, 2.8),
-      alpha: randomBetween(0.08, 0.45),
-      pulse: randomBetween(0, Math.PI * 2),
-      pulseSpeed: randomBetween(0.008, 0.022),
-    };
-  }
-
-  function initParticles() {
-    particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(createParticle());
-  }
-
-  function drawLines() {
-    const MAX_DIST = 140;
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MAX_DIST) {
-          const alpha = (1 - dist / MAX_DIST) * 0.1;
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(${BLUE},${alpha})`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
-      }
-      // Mouse attraction lines
-      const mdx = particles[i].x - mouse.x;
-      const mdy = particles[i].y - mouse.y;
-      const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-      if (mdist < 180) {
-        const alpha = (1 - mdist / 180) * 0.3;
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(${BLUE},${alpha})`;
-        ctx.lineWidth = 0.8;
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.stroke();
-      }
-    }
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-    drawLines();
-    for (const p of particles) {
-      p.pulse += p.pulseSpeed;
-      const a = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${BLUE},${a})`;
-      ctx.fill();
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.y < -10) { p.y = H + 10; p.x = randomBetween(0, W); }
-      if (p.x < -10) p.x = W + 10;
-      if (p.x > W + 10) p.x = -10;
-    }
-    requestAnimationFrame(animate);
-  }
-
-  window.addEventListener('resize', () => { resize(); initParticles(); });
-  canvas.addEventListener('mousemove', e => {
-    const r = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - r.left;
-    mouse.y = e.clientY - r.top;
-  });
-  canvas.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
-
-  resize();
-  initParticles();
-  animate();
-})();
-
 // ─── HEADER SCROLL ───
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
@@ -1904,21 +1834,25 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => observer.observe(el));
 
-// ─── FORM ───
+// ─── FORM SUBMIT ───
 function submitForm(e) {
   e.preventDefault();
-  const btn = e.target;
+  const btn = e.target.querySelector('.form-submit');
+  const originalText = btn.textContent;
   btn.textContent = 'Отправляем...';
   btn.disabled = true;
+  
   setTimeout(() => {
-    btn.textContent = 'Заявка отправлена';
+    btn.textContent = '✓ Заявка отправлена!';
     btn.style.background = '#18883F';
+    e.target.reset();
+    
     setTimeout(() => {
-      btn.textContent = 'Отправить заявку →';
+      btn.textContent = originalText;
       btn.disabled = false;
       btn.style.background = '';
     }, 3000);
-  }, 1200);
+  }, 1500);
 }
 
 // ─── PHONE MASK ───
@@ -1936,5 +1870,6 @@ document.querySelectorAll('input[type="tel"]').forEach(input => {
   });
 });
 </script>
+
 </body>
 </html>
