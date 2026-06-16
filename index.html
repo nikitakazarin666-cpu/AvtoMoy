@@ -550,6 +550,82 @@ nav a:hover::after { transform: scaleX(1); }
   }
 }
 
+/* ─── FILTERED SERVICES ─── */
+.service-item[data-class] {
+  display: block;
+}
+
+.service-item[data-class].hidden-class {
+  display: none !important;
+}
+
+/* Активный класс карточки */
+.car-class-card.active {
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 30px rgba(26,111,232,0.2);
+}
+
+.car-class-card.active::before {
+  transform: scaleX(1) !important;
+}
+
+/* Индикатор выбранного класса */
+.filter-info {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: var(--blue-dim);
+  border: 1px solid rgba(26,111,232,0.2);
+  border-radius: 4px;
+}
+.filter-info.visible {
+  display: block;
+}
+.filter-info span {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+/* Кнопка сброса фильтра */
+.filter-reset {
+  display: none;
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-radius: 2px;
+}
+.filter-reset:hover {
+  border-color: var(--blue);
+  color: var(--white);
+}
+.filter-reset.visible {
+  display: inline-block;
+}
+
+/* Адаптив для фильтра */
+@media (max-width: 768px) {
+  .filter-info {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+  .filter-reset {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 /* ─── SERVICES ─── */
 .services-wrap { background: var(--black); }
 .services-wrap .section { padding-top: 80px; padding-bottom: 80px; }
@@ -976,7 +1052,7 @@ a.contact-row-value:hover { color: var(--blue); }
 }
 .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); font-style: italic; }
 .form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: var(--blue);
+    border-color: var(--blue);
   background: rgba(26,111,232,0.06);
 }
 .form-select { cursor: pointer; }
@@ -1264,81 +1340,6 @@ footer {
     background-position: center 20%;
   }
 }
-/* ─── FILTERED SERVICES ─── */
-.service-item[data-class] {
-  display: block;
-}
-
-.service-item[data-class].hidden-class {
-  display: none !important;
-}
-
-/* Активный класс карточки */
-.car-class-card.active {
-  border-color: var(--blue) !important;
-  box-shadow: 0 0 30px rgba(26,111,232,0.2);
-}
-
-.car-class-card.active::before {
-  transform: scaleX(1) !important;
-}
-
-/* Индикатор выбранного класса */
-.filter-info {
-  display: none;
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: var(--text);
-  margin-bottom: 16px;
-  padding: 12px 16px;
-  background: var(--blue-dim);
-  border: 1px solid rgba(26,111,232,0.2);
-  border-radius: 4px;
-}
-.filter-info.visible {
-  display: block;
-}
-.filter-info span {
-  color: var(--blue);
-  font-weight: 600;
-}
-
-/* Кнопка сброса фильтра */
-.filter-reset {
-  display: none;
-  margin-top: 16px;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--text-dim);
-  background: transparent;
-  border: 1px solid var(--border);
-  padding: 10px 24px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  border-radius: 2px;
-}
-.filter-reset:hover {
-  border-color: var(--blue);
-  color: var(--white);
-}
-.filter-reset.visible {
-  display: inline-block;
-}
-
-/* Адаптив для фильтра */
-@media (max-width: 768px) {
-  .filter-info {
-    font-size: 12px;
-    padding: 10px 14px;
-  }
-  .filter-reset {
-    width: 100%;
-    text-align: center;
-  }
-}
 </style>
 </head>
 <body>
@@ -1439,11 +1440,6 @@ footer {
           <div class="car-class-img-wrap">
             <img src="images/class-1.webp" alt="Класс I — компактные авто до 4.5 м" loading="lazy"/>
           </div>
-              <!-- ─── ФИЛЬТР ИНФОРМАЦИЯ ─── -->
-    <div class="filter-info" id="filterInfo">
-      Показаны цены для <span id="selectedClassLabel">Класс I</span>
-      <span style="color: var(--text-dim); font-weight: 300;">(остальные классы скрыты)</span>
-    </div>
           <div class="car-class-info">
             <div class="car-class-badge">Класс I</div>
             <div class="car-class-size">до 4.5 м</div>
@@ -1483,6 +1479,12 @@ footer {
       </div>
     </div>
 
+    <!-- ─── ФИЛЬТР ИНФОРМАЦИЯ ─── -->
+    <div class="filter-info" id="filterInfo">
+      Показаны цены для <span id="selectedClassLabel">Класс I</span>
+      <span style="color: var(--text-dim); font-weight: 300;">(остальные классы скрыты)</span>
+    </div>
+
     <div class="services-categories">
 
       <!-- МОЙКА -->
@@ -1493,7 +1495,7 @@ footer {
         </div>
         <div class="service-items">
 
-          <div class="service-item" data-class="1">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-комплексная мойка</span>
               <div class="service-item-meta">
@@ -1524,7 +1526,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item" data-class="1">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-мойка кузова</span>
               <div class="service-item-meta">
@@ -1549,7 +1551,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item" data-class="1">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-уборка салона</span>
               <div class="service-item-meta">
@@ -1583,7 +1585,7 @@ footer {
         </div>
         <div class="service-items">
 
-          <div class="service-item" data-class="2">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Комплексная химчистка с разбором</span>
               <div class="service-item-meta">
@@ -1610,7 +1612,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item" data-class="2">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Комплексная химчистка без разбора</span>
               <div class="service-item-meta">
@@ -1626,7 +1628,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item" data-class="2">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Деликатная очистка кожи с кремом</span>
               <div class="service-item-meta">
@@ -1648,7 +1650,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item" data-class="2">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Обработка кожи увлажняющим кремом</span>
               <div class="service-item-meta">
@@ -1665,7 +1667,7 @@ footer {
           </div>
 
           <!-- Локальная химчистка -->
-          <div class="service-item" data-class="4">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Локальная химчистка</span>
               <div class="service-item-meta">
@@ -1698,7 +1700,7 @@ footer {
           <span class="service-cat-title">Уход за кузовом</span>
         </div>
         <div class="service-items">
-          <div class="service-item" data-class="3">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Удаление битума и реагента</span>
               <div class="service-item-meta">
@@ -1713,7 +1715,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item" data-class="3">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Удаление металлических вкраплений</span>
               <div class="service-item-meta">
@@ -1724,11 +1726,11 @@ footer {
             <div class="service-item-body">
               <table class="price-table">
                 <tr><th>Класс</th><th>I</th><th>II</th><th>III</th><th>IV</th></tr>
-                <tr><td>Стоимость</td><td class="price">2 000 ₽</td><td class="price">2 200 ₽</td><td class="price">2 500 ₽</td><td class="price">2 900 ₽</td></tr>
+                                <tr><td>Стоимость</td><td class="price">2 000 ₽</td><td class="price">2 200 ₽</td><td class="price">2 500 ₽</td><td class="price">2 900 ₽</td></tr>
               </table>
             </div>
           </div>
-          <div class="service-item" data-class="3">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Удаление следов насекомых и клея</span>
               <div class="service-item-meta">
@@ -1743,7 +1745,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item" data-class="3">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Удаление древесных смол</span>
               <div class="service-item-meta">
@@ -1758,7 +1760,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item" data-class="3">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Гидрофобное покрытие «Антидождь»</span>
               <div class="service-item-meta">
@@ -1774,7 +1776,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item" data-class="3">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Деконтаминация ЛКП</span>
               <div class="service-item-meta">
@@ -1799,7 +1801,7 @@ footer {
           <span class="service-cat-title">Колёса и диски</span>
         </div>
         <div class="service-items">
-          <div class="service-item" data-class="4">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Химчистка дисков с консервацией резины</span>
               <div class="service-item-meta">
@@ -1834,7 +1836,7 @@ footer {
           <span class="service-cat-title">Подкапотное пространство</span>
         </div>
         <div class="service-items">
-          <div class="service-item" data-class="4">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-мойка двигателя</span>
               <div class="service-item-meta">
@@ -1856,7 +1858,7 @@ footer {
               </ul>
             </div>
           </div>
-          <div class="service-item" data-class="4">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-уход за радиаторами</span>
               <div class="service-item-meta">
@@ -1881,7 +1883,7 @@ footer {
           <span class="service-cat-title">Подвеска и днище</span>
         </div>
         <div class="service-items">
-          <div class="service-item" data-class="4">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Уход за колесными арками и подвеской</span>
               <div class="service-item-meta">
@@ -1896,7 +1898,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item" data-class="4">
+          <div class="service-item" data-class="1,2,3,4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Уход за подвеской и днищем со снятием локеров</span>
               <div class="service-item-meta">
@@ -1915,6 +1917,8 @@ footer {
       </div>
 
     </div>
+  </div>
+</div>
 
 <!-- ─── HOW IT WORKS ─── -->
 <div class="how-wrap" id="how">
@@ -2184,39 +2188,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => observer.observe(el));
 
-// ─── FORM ───
-function submitForm(e) {
-  e.preventDefault();
-  const btn = e.target;
-  btn.textContent = 'Отправляем...';
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.textContent = 'Заявка отправлена';
-    btn.style.background = '#18883F';
-    setTimeout(() => {
-      btn.textContent = 'Отправить заявку →';
-      btn.disabled = false;
-      btn.style.background = '';
-    }, 3000);
-  }, 1200);
-}
-
-// ─── PHONE MASK ───
-document.querySelectorAll('input[type="tel"]').forEach(input => {
-  input.addEventListener('input', function() {
-    let v = this.value.replace(/\D/g, '');
-    if (v.startsWith('7') || v.startsWith('8')) v = v.slice(1);
-    if (v.length === 0) { this.value = ''; return; }
-    let r = '+7 (';
-    if (v.length >= 1) r += v.slice(0, 3);
-    if (v.length >= 4) r += ') ' + v.slice(3, 6);
-    if (v.length >= 7) r += '-' + v.slice(6, 8);
-    if (v.length >= 9) r += '-' + v.slice(8, 10);
-    this.value = r;
-  });
-});
-
-  // ─── ФИЛЬТР УСЛУГ ПО КЛАССУ АВТО ───
+// ─── ФИЛЬТР УСЛУГ ПО КЛАССУ АВТО ───
 let selectedClass = null;
 
 // Функция фильтрации
@@ -2239,10 +2211,11 @@ function filterServicesByClass(classNumber) {
     card.classList.toggle('active', parseInt(card.dataset.class) === classNumber);
   });
   
-  // Фильтруем услуги
+  // Фильтруем услуги - проверяем, содержит ли data-class выбранный класс
   document.querySelectorAll('.service-item').forEach(item => {
-    const itemClass = parseInt(item.dataset.class);
-    if (itemClass === classNumber) {
+    const itemClasses = item.dataset.class ? item.dataset.class.split(',').map(Number) : [];
+    // Если услуга подходит для выбранного класса
+    if (itemClasses.includes(classNumber)) {
       item.classList.remove('hidden-class');
     } else {
       item.classList.add('hidden-class');
@@ -2307,6 +2280,38 @@ const carClasses = document.querySelector('.car-classes');
 if (carClasses) {
   carClasses.insertAdjacentElement('afterend', resetBtn);
 }
+
+// ─── FORM ───
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target;
+  btn.textContent = 'Отправляем...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Заявка отправлена';
+    btn.style.background = '#18883F';
+    setTimeout(() => {
+      btn.textContent = 'Отправить заявку →';
+      btn.disabled = false;
+      btn.style.background = '';
+    }, 3000);
+  }, 1200);
+}
+
+// ─── PHONE MASK ───
+document.querySelectorAll('input[type="tel"]').forEach(input => {
+  input.addEventListener('input', function() {
+    let v = this.value.replace(/\D/g, '');
+    if (v.startsWith('7') || v.startsWith('8')) v = v.slice(1);
+    if (v.length === 0) { this.value = ''; return; }
+    let r = '+7 (';
+    if (v.length >= 1) r += v.slice(0, 3);
+    if (v.length >= 4) r += ') ' + v.slice(3, 6);
+    if (v.length >= 7) r += '-' + v.slice(6, 8);
+    if (v.length >= 9) r += '-' + v.slice(8, 10);
+    this.value = r;
+  });
+});
 </script>
 </body>
 </html>
