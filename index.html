@@ -2211,12 +2211,46 @@ function filterServicesByClass(classNumber) {
     card.classList.toggle('active', parseInt(card.dataset.class) === classNumber);
   });
   
-  // Фильтруем услуги - проверяем, содержит ли data-class выбранный класс
+  // Фильтруем услуги и цены
   document.querySelectorAll('.service-item').forEach(item => {
     const itemClasses = item.dataset.class ? item.dataset.class.split(',').map(Number) : [];
-    // Если услуга подходит для выбранного класса
+    
     if (itemClasses.includes(classNumber)) {
       item.classList.remove('hidden-class');
+      
+      // Находим все ячейки с ценами в этой услуге
+      const priceCells = item.querySelectorAll('.price-table td.price');
+      const headerCells = item.querySelectorAll('.price-table th');
+      
+      // Скрываем все цены
+      priceCells.forEach(cell => {
+        cell.classList.add('price-hidden');
+        cell.classList.remove('price-visible');
+      });
+      
+      // Показываем только цены для выбранного класса
+      const classIndex = classNumber - 1;
+      
+      priceCells.forEach((cell, index) => {
+        const colIndex = index % 5;
+        if (colIndex === classIndex + 1) {
+          cell.classList.remove('price-hidden');
+          cell.classList.add('price-visible');
+        }
+      });
+      
+      // Скрываем заголовки классов, кроме выбранного
+      headerCells.forEach((cell, index) => {
+        if (index === 0) return;
+        if (index === classIndex + 1) {
+          cell.style.opacity = '1';
+          cell.style.color = 'var(--blue)';
+        } else {
+          cell.style.opacity = '0.2';
+          cell.style.color = 'var(--text-dim)';
+        }
+      });
+      
     } else {
       item.classList.add('hidden-class');
     }
@@ -2232,24 +2266,32 @@ function filterServicesByClass(classNumber) {
 function resetFilter() {
   selectedClass = null;
   
-  // Скрываем информацию
   const filterInfo = document.getElementById('filterInfo');
   if (filterInfo) filterInfo.classList.remove('visible');
   
   const resetBtn = document.querySelector('.filter-reset');
   if (resetBtn) resetBtn.classList.remove('visible');
   
-  // Убираем подсветку карточек
   document.querySelectorAll('.car-class-card').forEach(card => {
     card.classList.remove('active');
   });
   
-  // Показываем все услуги
   document.querySelectorAll('.service-item').forEach(item => {
     item.classList.remove('hidden-class');
+    
+    const priceCells = item.querySelectorAll('.price-table td.price');
+    priceCells.forEach(cell => {
+      cell.classList.remove('price-hidden');
+      cell.classList.remove('price-visible');
+    });
+    
+    const headerCells = item.querySelectorAll('.price-table th');
+    headerCells.forEach(cell => {
+      cell.style.opacity = '1';
+      cell.style.color = '';
+    });
   });
   
-  // Закрываем все открытые аккордеоны
   document.querySelectorAll('.service-item.open').forEach(i => i.classList.remove('open'));
 }
 
@@ -2258,9 +2300,7 @@ document.querySelectorAll('.car-class-card').forEach(card => {
   card.style.cursor = 'pointer';
   card.addEventListener('click', function(e) {
     if (e.target.closest('a') || e.target.closest('button')) return;
-    
     const classNumber = parseInt(this.dataset.class);
-    
     if (selectedClass === classNumber) {
       resetFilter();
     } else {
@@ -2275,7 +2315,6 @@ resetBtn.className = 'filter-reset';
 resetBtn.textContent = 'Показать все классы';
 resetBtn.addEventListener('click', resetFilter);
 
-// Вставляем кнопку после карточек классов
 const carClasses = document.querySelector('.car-classes');
 if (carClasses) {
   carClasses.insertAdjacentElement('afterend', resetBtn);
