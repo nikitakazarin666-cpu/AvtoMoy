@@ -1264,6 +1264,81 @@ footer {
     background-position: center 20%;
   }
 }
+/* ─── FILTERED SERVICES ─── */
+.service-item[data-class] {
+  display: block;
+}
+
+.service-item[data-class].hidden-class {
+  display: none !important;
+}
+
+/* Активный класс карточки */
+.car-class-card.active {
+  border-color: var(--blue) !important;
+  box-shadow: 0 0 30px rgba(26,111,232,0.2);
+}
+
+.car-class-card.active::before {
+  transform: scaleX(1) !important;
+}
+
+/* Индикатор выбранного класса */
+.filter-info {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: var(--blue-dim);
+  border: 1px solid rgba(26,111,232,0.2);
+  border-radius: 4px;
+}
+.filter-info.visible {
+  display: block;
+}
+.filter-info span {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+/* Кнопка сброса фильтра */
+.filter-reset {
+  display: none;
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-radius: 2px;
+}
+.filter-reset:hover {
+  border-color: var(--blue);
+  color: var(--white);
+}
+.filter-reset.visible {
+  display: inline-block;
+}
+
+/* Адаптив для фильтра */
+@media (max-width: 768px) {
+  .filter-info {
+    font-size: 12px;
+    padding: 10px 14px;
+  }
+  .filter-reset {
+    width: 100%;
+    text-align: center;
+  }
+}
 </style>
 </head>
 <body>
@@ -1364,6 +1439,11 @@ footer {
           <div class="car-class-img-wrap">
             <img src="images/class-1.webp" alt="Класс I — компактные авто до 4.5 м" loading="lazy"/>
           </div>
+              <!-- ─── ФИЛЬТР ИНФОРМАЦИЯ ─── -->
+    <div class="filter-info" id="filterInfo">
+      Показаны цены для <span id="selectedClassLabel">Класс I</span>
+      <span style="color: var(--text-dim); font-weight: 300;">(остальные классы скрыты)</span>
+    </div>
           <div class="car-class-info">
             <div class="car-class-badge">Класс I</div>
             <div class="car-class-size">до 4.5 м</div>
@@ -1413,7 +1493,7 @@ footer {
         </div>
         <div class="service-items">
 
-          <div class="service-item">
+          <div class="service-item" data-class="1">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-комплексная мойка</span>
               <div class="service-item-meta">
@@ -1444,7 +1524,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item">
+          <div class="service-item" data-class="1">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-мойка кузова</span>
               <div class="service-item-meta">
@@ -1469,7 +1549,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item">
+          <div class="service-item" data-class="1">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-уборка салона</span>
               <div class="service-item-meta">
@@ -1503,7 +1583,7 @@ footer {
         </div>
         <div class="service-items">
 
-          <div class="service-item">
+          <div class="service-item" data-class="2">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Комплексная химчистка с разбором</span>
               <div class="service-item-meta">
@@ -1530,7 +1610,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item">
+          <div class="service-item" data-class="2">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Комплексная химчистка без разбора</span>
               <div class="service-item-meta">
@@ -1546,7 +1626,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item">
+          <div class="service-item" data-class="2">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Деликатная очистка кожи с кремом</span>
               <div class="service-item-meta">
@@ -1568,7 +1648,7 @@ footer {
             </div>
           </div>
 
-          <div class="service-item">
+          <div class="service-item" data-class="2">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Обработка кожи увлажняющим кремом</span>
               <div class="service-item-meta">
@@ -1585,7 +1665,7 @@ footer {
           </div>
 
           <!-- Локальная химчистка -->
-          <div class="service-item">
+          <div class="service-item" data-class="4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Локальная химчистка</span>
               <div class="service-item-meta">
@@ -1618,7 +1698,7 @@ footer {
           <span class="service-cat-title">Уход за кузовом</span>
         </div>
         <div class="service-items">
-          <div class="service-item">
+          <div class="service-item" data-class="3">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Удаление битума и реагента</span>
               <div class="service-item-meta">
@@ -1633,7 +1713,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item">
+          <div class="service-item" data-class="3">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Удаление металлических вкраплений</span>
               <div class="service-item-meta">
@@ -1648,7 +1728,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item">
+          <div class="service-item" data-class="3">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Удаление следов насекомых и клея</span>
               <div class="service-item-meta">
@@ -1663,7 +1743,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item">
+          <div class="service-item" data-class="3">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Удаление древесных смол</span>
               <div class="service-item-meta">
@@ -1678,7 +1758,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item">
+          <div class="service-item" data-class="3">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Гидрофобное покрытие «Антидождь»</span>
               <div class="service-item-meta">
@@ -1694,7 +1774,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item">
+          <div class="service-item" data-class="3">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Деконтаминация ЛКП</span>
               <div class="service-item-meta">
@@ -1719,7 +1799,7 @@ footer {
           <span class="service-cat-title">Колёса и диски</span>
         </div>
         <div class="service-items">
-          <div class="service-item">
+          <div class="service-item" data-class="4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Химчистка дисков с консервацией резины</span>
               <div class="service-item-meta">
@@ -1754,7 +1834,7 @@ footer {
           <span class="service-cat-title">Подкапотное пространство</span>
         </div>
         <div class="service-items">
-          <div class="service-item">
+          <div class="service-item" data-class="4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-мойка двигателя</span>
               <div class="service-item-meta">
@@ -1776,7 +1856,7 @@ footer {
               </ul>
             </div>
           </div>
-          <div class="service-item">
+          <div class="service-item" data-class="4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Детейлинг-уход за радиаторами</span>
               <div class="service-item-meta">
@@ -1801,7 +1881,7 @@ footer {
           <span class="service-cat-title">Подвеска и днище</span>
         </div>
         <div class="service-items">
-          <div class="service-item">
+          <div class="service-item" data-class="4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Уход за колесными арками и подвеской</span>
               <div class="service-item-meta">
@@ -1816,7 +1896,7 @@ footer {
               </table>
             </div>
           </div>
-          <div class="service-item">
+          <div class="service-item" data-class="4">
             <button class="service-item-btn" onclick="toggleService(this)">
               <span class="service-item-name">Уход за подвеской и днищем со снятием локеров</span>
               <div class="service-item-meta">
@@ -1835,8 +1915,6 @@ footer {
       </div>
 
     </div>
-  </div>
-</div>
 
 <!-- ─── HOW IT WORKS ─── -->
 <div class="how-wrap" id="how">
@@ -2137,6 +2215,98 @@ document.querySelectorAll('input[type="tel"]').forEach(input => {
     this.value = r;
   });
 });
+
+  // ─── ФИЛЬТР УСЛУГ ПО КЛАССУ АВТО ───
+let selectedClass = null;
+
+// Функция фильтрации
+function filterServicesByClass(classNumber) {
+  const classLabel = document.querySelector(`.car-class-card[data-class="${classNumber}"] .car-class-badge`);
+  const className = classLabel ? classLabel.textContent : `Класс ${classNumber}`;
+  
+  // Показываем информацию о фильтре
+  const filterInfo = document.getElementById('filterInfo');
+  const selectedLabel = document.getElementById('selectedClassLabel');
+  selectedLabel.textContent = className;
+  filterInfo.classList.add('visible');
+  
+  // Показываем кнопку сброса
+  const resetBtn = document.querySelector('.filter-reset');
+  if (resetBtn) resetBtn.classList.add('visible');
+  
+  // Подсвечиваем активную карточку
+  document.querySelectorAll('.car-class-card').forEach(card => {
+    card.classList.toggle('active', parseInt(card.dataset.class) === classNumber);
+  });
+  
+  // Фильтруем услуги
+  document.querySelectorAll('.service-item').forEach(item => {
+    const itemClass = parseInt(item.dataset.class);
+    if (itemClass === classNumber) {
+      item.classList.remove('hidden-class');
+    } else {
+      item.classList.add('hidden-class');
+    }
+  });
+  
+  selectedClass = classNumber;
+  
+  // Закрываем все открытые аккордеоны
+  document.querySelectorAll('.service-item.open').forEach(i => i.classList.remove('open'));
+}
+
+// Функция сброса фильтра
+function resetFilter() {
+  selectedClass = null;
+  
+  // Скрываем информацию
+  const filterInfo = document.getElementById('filterInfo');
+  if (filterInfo) filterInfo.classList.remove('visible');
+  
+  const resetBtn = document.querySelector('.filter-reset');
+  if (resetBtn) resetBtn.classList.remove('visible');
+  
+  // Убираем подсветку карточек
+  document.querySelectorAll('.car-class-card').forEach(card => {
+    card.classList.remove('active');
+  });
+  
+  // Показываем все услуги
+  document.querySelectorAll('.service-item').forEach(item => {
+    item.classList.remove('hidden-class');
+  });
+  
+  // Закрываем все открытые аккордеоны
+  document.querySelectorAll('.service-item.open').forEach(i => i.classList.remove('open'));
+}
+
+// Навешиваем обработчики на карточки классов
+document.querySelectorAll('.car-class-card').forEach(card => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', function(e) {
+    if (e.target.closest('a') || e.target.closest('button')) return;
+    
+    const classNumber = parseInt(this.dataset.class);
+    
+    if (selectedClass === classNumber) {
+      resetFilter();
+    } else {
+      filterServicesByClass(classNumber);
+    }
+  });
+});
+
+// Добавляем кнопку сброса в DOM
+const resetBtn = document.createElement('button');
+resetBtn.className = 'filter-reset';
+resetBtn.textContent = 'Показать все классы';
+resetBtn.addEventListener('click', resetFilter);
+
+// Вставляем кнопку после карточек классов
+const carClasses = document.querySelector('.car-classes');
+if (carClasses) {
+  carClasses.insertAdjacentElement('afterend', resetBtn);
+}
 </script>
 </body>
 </html>
