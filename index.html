@@ -193,7 +193,6 @@ nav a:hover::after { transform: scaleX(1); }
   background: var(--black);
 }
 
-/* ─── HERO BACKGROUND IMAGE ─── */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -205,13 +204,11 @@ nav a:hover::after { transform: scaleX(1); }
   background-position: center;
   background-repeat: no-repeat;
 }
-
-/* Затемнение для лучшей читаемости текста */
 .hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(8, 8, 8, 0.5);
+  background: rgba(8, 8, 8, 0.55);
   z-index: 1;
 }
 
@@ -436,6 +433,121 @@ nav a:hover::after { transform: scaleX(1); }
   max-width: 560px;
   line-height: 1.7;
   margin-bottom: 56px;
+}
+
+/* ─── CAR CLASS CARDS ─── */
+.car-classes {
+  margin-bottom: 64px;
+}
+
+.car-classes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.car-class-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: default;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+}
+.car-class-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: 1;
+}
+.car-class-card:hover {
+  border-color: rgba(26,111,232,0.4);
+  transform: translateY(-3px);
+}
+.car-class-card:hover::before {
+  transform: scaleX(1);
+}
+
+.car-class-img-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #0D0D10;
+}
+.car-class-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.23,1,0.32,1);
+}
+.car-class-card:hover .car-class-img-wrap img {
+  transform: scale(1.04);
+}
+
+.car-class-info {
+  padding: 16px 18px 20px;
+}
+
+.car-class-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-accent);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--blue);
+  background: var(--blue-dim);
+  border: 1px solid rgba(26,111,232,0.25);
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.car-class-size {
+  font-family: var(--font-display);
+  font-size: 30px;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.car-class-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+@media (max-width: 1024px) {
+  .car-classes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .car-classes-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .car-class-info { padding: 12px 14px 16px; }
+  .car-class-size { font-size: 24px; }
+  .car-class-desc { font-size: 11px; }
+}
+
+@media (max-width: 400px) {
+  .car-classes-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ─── SERVICES ─── */
@@ -998,14 +1110,6 @@ footer {
   .footer-inner { grid-template-columns: repeat(2, 1fr); padding: 0 32px; }
   footer { padding: 48px 0 32px; }
   .footer-bottom { padding: 20px 32px 0; }
-  
-  /* 👇 ВСТАВИТЬ СЮДА */
-  .hero-title .line-blue {
-    margin-top: 0px !important;
-  }
-  .hero-title span:last-child {
-    margin-top: 20px !important;
-  }
 }
 
 @media (max-width: 768px) {
@@ -1026,21 +1130,9 @@ footer {
   .footer-bottom { padding: 20px 20px 0; }
   .header { padding: 0 20px; height: 64px; }
   .mobile-nav { top: 64px; }
-  
-  /* ─── HERO MOBILE BACKGROUND ─── */
   .hero-bg {
     background-image: url('images/hero-bg-mobile.webp');
     background-position: center 30%;
-  }
-  
-  /* 👇 ВСТАВИТЬ СЮДА */
-  .hero-title .line-blue {
-    margin-top: 2px !important;
-  }
-  .hero-title span:last-child {
-    margin-top: 14px !important;
-    font-size: 0.45em !important;
-    letter-spacing: 0.12em !important;
   }
 }
 
@@ -1053,22 +1145,6 @@ footer {
   .stats-inner { grid-template-columns: 1fr 1fr; }
   .stat-item { padding: 20px 12px; }
   .stat-num { font-size: 34px; }
-  
-  /* ─── HERO MOBILE BACKGROUND ─── */
-  .hero-bg {
-    background-image: url('images/hero-bg-mobile.webp');
-    background-position: center 20%;
-  }
-  
-  /* 👇 ВСТАВИТЬ СЮДА */
-  .hero-title .line-blue {
-    margin-top: 4px !important;
-  }
-  .hero-title span:last-child {
-    margin-top: 10px !important;
-    font-size: 0.4em !important;
-    letter-spacing: 0.1em !important;
-  }
 }
 </style>
 </head>
@@ -1077,7 +1153,7 @@ footer {
 <!-- ─── HEADER ─── -->
 <header class="header" id="header">
   <a href="#" class="logo">
-    <img src="images/logo.webp" alt="АвтоМой логотип"/>
+    <img src="images/logo.png" alt="АвтоМой логотип"/>
   </a>
   <nav>
     <a href="#services">Услуги</a>
@@ -1101,17 +1177,16 @@ footer {
 
 <!-- ─── HERO ─── -->
 <section class="hero" id="home">
-  <!-- Фоновое изображение вместо Canvas -->
   <div class="hero-bg"></div>
   <div class="hero-gradient"></div>
 
   <div class="hero-content">
     <p class="hero-eyebrow">Москва &bull; Внуково</p>
-   <h1 class="hero-title">
-  <span class="line-silver" style="display: block;">Авто</span>
-  <span class="line-blue" style="display: block; margin-top: -2px;">Мой</span>
-  <span style="display: block; margin-top: 24px; font-size:0.38em; letter-spacing:0.18em; color:rgba(255,255,255,0.35); font-family:var(--font-accent); font-weight:300; text-transform:uppercase;">Детейлинг-мойка</span>
-</h1>
+    <h1 class="hero-title">
+      <span class="line-silver">Авто</span><br/>
+      <span class="line-blue">Мой</span><br/>
+      <span style="font-size:0.38em; letter-spacing:0.18em; color:rgba(255,255,255,0.35); font-family:var(--font-accent); font-weight:300; text-transform:uppercase;">Детейлинг-мойка</span>
+    </h1>
     <p class="hero-sub">Мойка и уход за автомобилем, которые видны в деталях. Только профессиональная химия, только результат.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">
@@ -1155,7 +1230,53 @@ footer {
   <div class="section">
     <p class="section-eyebrow reveal">Прайс-лист</p>
     <h2 class="section-title reveal">Наши <span class="blue">Услуги</span></h2>
-    <p class="section-lead reveal">Классы авто: I — до 4.5 м, II — до 4.9 м, III — до 5.2 м, IV — свыше 5.2 м / внедорожники</p>
+    <p class="section-lead reveal">Цена зависит от класса автомобиля — выберите свой и смотрите точные цены в каждой услуге.</p>
+
+    <!-- ─── CAR CLASSES ─── -->
+    <div class="car-classes reveal">
+      <div class="car-classes-grid">
+        <div class="car-class-card" data-class="1">
+          <div class="car-class-img-wrap">
+            <img src="images/class-1.png" alt="Класс I — компактные авто до 4.5 м" loading="lazy"/>
+          </div>
+          <div class="car-class-info">
+            <div class="car-class-badge">Класс I</div>
+            <div class="car-class-size">до 4.5 м</div>
+            <p class="car-class-desc">Компактные автомобили, хэтчбеки, малые седаны</p>
+          </div>
+        </div>
+        <div class="car-class-card" data-class="2">
+          <div class="car-class-img-wrap">
+            <img src="images/class-2.png" alt="Класс II — среднеразмерные авто до 4.9 м" loading="lazy"/>
+          </div>
+          <div class="car-class-info">
+            <div class="car-class-badge">Класс II</div>
+            <div class="car-class-size">до 4.9 м</div>
+            <p class="car-class-desc">Среднеразмерные автомобили, универсалы, кроссоверы</p>
+          </div>
+        </div>
+        <div class="car-class-card" data-class="3">
+          <div class="car-class-img-wrap">
+            <img src="images/class-3.png" alt="Класс III — бизнес-седаны до 5.2 м" loading="lazy"/>
+          </div>
+          <div class="car-class-info">
+            <div class="car-class-badge">Класс III</div>
+            <div class="car-class-size">до 5.2 м</div>
+            <p class="car-class-desc">Бизнес-седаны, большие кроссоверы</p>
+          </div>
+        </div>
+        <div class="car-class-card" data-class="4">
+          <div class="car-class-img-wrap">
+            <img src="images/class-4.png" alt="Класс IV — внедорожники, минивэны свыше 5.2 м" loading="lazy"/>
+          </div>
+          <div class="car-class-info">
+            <div class="car-class-badge">Класс IV</div>
+            <div class="car-class-size">свыше 5.2 м</div>
+            <p class="car-class-desc">Крупные авто, внедорожники, минивэны</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="services-categories">
 
@@ -1598,7 +1719,7 @@ footer {
     <p class="section-eyebrow reveal">Процесс</p>
     <h2 class="section-title reveal"><span class="dim">Как мы</span> <span class="blue">Работаем</span></h2>
     <div class="steps reveal">
-            <div class="step">
+      <div class="step">
         <div class="step-num">01</div>
         <div class="step-title">Запись</div>
         <p class="step-text">Позвоните или оставьте заявку на сайте. Выберем удобное время — работаем ежедневно с 11:00 до 22:00.</p>
@@ -1627,43 +1748,44 @@ footer {
   <div class="section" style="padding-bottom: 0;">
     <p class="section-eyebrow reveal">Портфолио</p>
     <h2 class="section-title reveal">Наши <span class="blue">Работы</span></h2>
-    <p class="section-lead reveal">Фотографии реальных автомобилей до и после обработки.</p>
+    <p class="section-lead reveal">Фотографии реальных автомобилей до и после обработки. Добавьте свои фото в папку images/ проекта.</p>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="images/photo1.webp" alt="Детейлинг-мойка кузова АвтоМой" loading="lazy"/>
-      <div class="gallery-item-overlay">
-        <span class="gallery-caption">Детейлинг-мойка кузова</span>
+    <!-- Placeholders – заменить на реальные img src="images/photo1.webp" -->
+    <div class="gallery-item ph">
+      <div class="gallery-ph-label">
+        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        images/photo1.webp
       </div>
     </div>
-    <div class="gallery-item">
-      <img src="images/photo2.webp" alt="Химчистка салона АвтоМой" loading="lazy"/>
-      <div class="gallery-item-overlay">
-        <span class="gallery-caption">Химчистка салона</span>
+    <div class="gallery-item ph">
+      <div class="gallery-ph-label">
+        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        images/photo2.webp
       </div>
     </div>
-    <div class="gallery-item">
-      <img src="images/photo3.webp" alt="Полировка кузова АвтоМой" loading="lazy"/>
-      <div class="gallery-item-overlay">
-        <span class="gallery-caption">Полировка кузова</span>
+    <div class="gallery-item ph">
+      <div class="gallery-ph-label">
+        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        images/photo3.webp
       </div>
     </div>
-    <div class="gallery-item">
-      <img src="images/photo4.webp" alt="Мойка двигателя АвтоМой" loading="lazy"/>
-      <div class="gallery-item-overlay">
-        <span class="gallery-caption">Мойка двигателя</span>
+    <div class="gallery-item ph">
+      <div class="gallery-ph-label">
+        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        images/photo4.webp
       </div>
     </div>
-    <div class="gallery-item">
-      <img src="images/photo5.webp" alt="Химчистка дисков АвтоМой" loading="lazy"/>
-      <div class="gallery-item-overlay">
-        <span class="gallery-caption">Химчистка дисков</span>
+    <div class="gallery-item ph">
+      <div class="gallery-ph-label">
+        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        images/photo5.webp
       </div>
     </div>
-    <div class="gallery-item">
-      <img src="images/photo6.webp" alt="Комплексная мойка АвтоМой" loading="lazy"/>
-      <div class="gallery-item-overlay">
-        <span class="gallery-caption">Комплексная мойка</span>
+    <div class="gallery-item ph">
+      <div class="gallery-ph-label">
+        <svg class="gallery-ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        images/photo6.webp
       </div>
     </div>
   </div>
@@ -1740,47 +1862,45 @@ footer {
       <div class="form-card reveal">
         <div class="form-title">Запись</div>
         <p class="form-sub">Перезвоним в течение часа и подберём время</p>
-        <form onsubmit="submitForm(event)">
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="user-name" class="form-label">Имя <span>*</span></label>
-              <input type="text" id="user-name" class="form-input" placeholder="Ваше имя" autocomplete="name" required/>
-            </div>
-            <div class="form-group">
-              <label for="user-phone" class="form-label">Телефон <span>*</span></label>
-              <input type="tel" id="user-phone" class="form-input" placeholder="+7 (___) ___-__-__" autocomplete="tel" required/>
-            </div>
-            <div class="form-group">
-              <label for="user-car" class="form-label">Марка автомобиля <span>*</span></label>
-              <input type="text" id="user-car" class="form-input" placeholder="Например: BMW 7" required/>
-            </div>
-            <div class="form-group">
-              <label for="user-service" class="form-label">Услуга <span>*</span></label>
-              <select id="user-service" class="form-select" required>
-                <option value="" disabled selected>Выберите услугу</option>
-                <option>Детейлинг-комплексная мойка</option>
-                <option>Детейлинг-мойка кузова</option>
-                <option>Детейлинг-уборка салона</option>
-                <option>Комплексная химчистка с разбором</option>
-                <option>Химчистка без разбора</option>
-                <option>Деликатная очистка кожи</option>
-                <option>Уход за кузовом</option>
-                <option>Химчистка дисков</option>
-                <option>Мойка двигателя</option>
-                <option>Другое</option>
-              </select>
-            </div>
-            <div class="form-group full">
-              <label for="user-comment" class="form-label">Комментарий</label>
-              <textarea id="user-comment" class="form-textarea" placeholder="Особые пожелания (необязательно)"></textarea>
-            </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Имя <span>*</span></label>
+            <input type="text" class="form-input" placeholder="Ваше имя" autocomplete="name"/>
           </div>
-          <div class="form-check">
-            <input type="checkbox" id="consent" required/>
-            <label for="consent">Нажимая кнопку, вы соглашаетесь с <a href="#">обработкой персональных данных</a></label>
+          <div class="form-group">
+            <label class="form-label">Телефон <span>*</span></label>
+            <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" autocomplete="tel"/>
           </div>
-          <button type="submit" class="form-submit">Отправить заявку →</button>
-        </form>
+          <div class="form-group">
+            <label class="form-label">Марка автомобиля <span>*</span></label>
+            <input type="text" class="form-input" placeholder="Например: BMW 7"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Услуга <span>*</span></label>
+            <select class="form-select">
+              <option value="" disabled selected>Выберите услугу</option>
+              <option>Детейлинг-комплексная мойка</option>
+              <option>Детейлинг-мойка кузова</option>
+              <option>Детейлинг-уборка салона</option>
+              <option>Комплексная химчистка с разбором</option>
+              <option>Химчистка без разбора</option>
+              <option>Деликатная очистка кожи</option>
+              <option>Уход за кузовом</option>
+              <option>Химчистка дисков</option>
+              <option>Мойка двигателя</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Комментарий</label>
+            <textarea class="form-textarea" placeholder="Особые пожелания (необязательно)"></textarea>
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="consent" required/>
+          <label for="consent">Нажимая кнопку, вы соглашаетесь с <a href="#">обработкой персональных данных</a></label>
+        </div>
+        <button class="form-submit" onclick="submitForm(event)">Отправить заявку →</button>
       </div>
     </div>
   </div>
@@ -1862,25 +1982,21 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => observer.observe(el));
 
-// ─── FORM SUBMIT ───
+// ─── FORM ───
 function submitForm(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  const originalText = btn.textContent;
+  const btn = e.target;
   btn.textContent = 'Отправляем...';
   btn.disabled = true;
-  
   setTimeout(() => {
-    btn.textContent = '✓ Заявка отправлена!';
+    btn.textContent = 'Заявка отправлена';
     btn.style.background = '#18883F';
-    e.target.reset();
-    
     setTimeout(() => {
-      btn.textContent = originalText;
+      btn.textContent = 'Отправить заявку →';
       btn.disabled = false;
       btn.style.background = '';
     }, 3000);
-  }, 1500);
+  }, 1200);
 }
 
 // ─── PHONE MASK ───
@@ -1898,6 +2014,5 @@ document.querySelectorAll('input[type="tel"]').forEach(input => {
   });
 });
 </script>
-
 </body>
 </html>
